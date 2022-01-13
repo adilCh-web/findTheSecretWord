@@ -1,6 +1,9 @@
 
 import  {secretWords} from "./words.js"
 
+
+let music = true;
+let musicButton = document.getElementById("music")
 var word = secretWords[Math.floor(Math.random() * secretWords.length)]
 let lettersArray=[]
 // console.log(secretWords.length)
@@ -20,10 +23,34 @@ const winingSound = new Audio("./tracks/K3RTHA7-game-win-horns.mp3")
 const insertSound = new Audio("./tracks/insert.wav")
 
 
+
+// changing sound sitting
+musicButton.addEventListener("click", ()=>
+{
+    if(musicButton.textContent === "Sound: ON")
+    {
+        music = false;
+        musicButton.textContent = "Sound: OFF"
+        console.log(musicButton.textContent)
+
+    }
+    else
+    {
+        music = true;
+        musicButton.textContent = "Sound: ON"
+        console.log(musicButton.textContent)
+    }
+}
+)
+
+
 function submitWord()
 {
     let myWord = document.getElementById("myWord").value
-    insertSound.play()
+    if(music==true)
+    {
+        insertSound.play()
+    }
 
     // console.log(myWord)
     // console.log(word)
@@ -65,8 +92,11 @@ function submitWord()
             const p = document.getElementById("info");
             
             p.innerHTML = "the Secret Word is :" + "<br>" + word;
-            gameTheme.pause()
-            gameOverSound.play()
+            if(music == true)
+            {
+                gameTheme.pause()
+                gameOverSound.play()
+            }
         }
         tries-=1
         document.getElementById("nrOfTries").innerHTML = "Number Of tries: 0" +tries
@@ -83,8 +113,11 @@ function submitWord()
         document.getElementById("gameOver").setAttribute("src","./img/wellDone.png")
         document.getElementById("gameOver").style.display = "block"
         clearInterval(interval)
-        gameTheme.pause()
-        winingSound.play()
+        if(music == true)
+        {
+            gameTheme.pause()
+            winingSound.play()
+        }
         const p = document.getElementById("info")
         p.innerHTML = "Well done you made it in " + (210 -seconds) + "seconds, with just " + nr + " tries"
     }
@@ -95,8 +128,12 @@ function submitWord()
 
 function timing()
 {
-    gameTheme.play()
-    gameTheme.loop = true
+    if(music == true)
+    {
+        gameTheme.play()
+
+    }
+    musicButton.style.display = "none"
     document.getElementById("ready").style.display = "none"
     document.getElementById("submit").style.display = "block"
     document.getElementById("myWord").style.display = "block"
@@ -116,8 +153,11 @@ function timing()
         document.getElementById("gameOver").setAttribute("src","./img/game_over_PNG41.png")
         document.getElementById("gameOver").style.display = "block"
         clearInterval(interval)
-        gameTheme.pause()
-        gameOverSound.play()
+        if(music == true)
+        {
+            gameTheme.pause()
+            gameOverSound.play()
+        }
     } }
    ,1000) 
    document.getElementById("nrOfTries").innerHTML = "Number Of tries: 0" +tries

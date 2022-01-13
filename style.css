@@ -13,7 +13,9 @@ h1
     letter-spacing: 5px;
     text-align: center;
     margin:20px;
-    font-size:20px
+    font-size:20px;
+    line-height: 30px;
+    margin-top:40px
 }
 
 span
@@ -81,11 +83,27 @@ ul
     font-size: 25px;
     margin:10px
 }
+
+#music
+{
+    background-color:black;
+    color:white ;
+    font-size:8px;
+    width:50px;
+    font-weight: bold;
+    color:darkgray;
+    border-radius: 25px;
+    display:block;
+    margin:auto auto;
+    margin-bottom: 10px;
+    
+
+}
 li
 {
     width:35px;
     text-align: center;
-    color:white;
+    align-self: center;
     font-weight: bold;
 }
 
@@ -104,7 +122,7 @@ li
 }
 #nav ul
 {
-    font-size: 15px;
+    font-size: 12px;
     
     padding:10px
 
