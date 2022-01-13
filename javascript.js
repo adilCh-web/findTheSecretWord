@@ -3,10 +3,12 @@ import  {secretWords} from "./words.js"
 
 
 let music = true;
+const p = document.getElementById("info");
 let musicButton = document.getElementById("music")
 var word = secretWords[Math.floor(Math.random() * secretWords.length)]
 let lettersArray=[]
 // console.log(secretWords.length)
+console.log(word)
 for(let i=0;i<word.length;i++)
 {
     lettersArray.push(word[i])
@@ -31,7 +33,6 @@ musicButton.addEventListener("click", ()=>
     {
         music = false;
         musicButton.textContent = "Sound: OFF"
-        console.log(musicButton.textContent)
 
     }
     else
@@ -47,6 +48,7 @@ musicButton.addEventListener("click", ()=>
 function submitWord()
 {
     let myWord = document.getElementById("myWord").value
+    nr+=1
     if(music==true)
     {
         insertSound.play()
@@ -56,12 +58,10 @@ function submitWord()
     // console.log(word)
     if(myWord.toLowerCase() !==word.toLowerCase() )
     {
-
         if (tries !==1)
         {
             document.getElementById("nav").style.display = "block"
             
-            nr+=1
             //console.log(myWord)
             let id = "id"+nr
             const ul = document.createElement("ul")
@@ -89,9 +89,14 @@ function submitWord()
             document.getElementById("myTries").style.display = "none"
             document.getElementById("gameOver").style.display = "block"
             clearInterval(interval)
-            const p = document.getElementById("info");
-            
+
+            let increase = 0           
+            setInterval(() => {
+            increase+=0.1
+            p.style.opacity=increase
             p.innerHTML = "the Secret Word is :" + "<br>" + word;
+                
+            }, 1000);
             if(music == true)
             {
                 gameTheme.pause()
@@ -118,8 +123,17 @@ function submitWord()
             gameTheme.pause()
             winingSound.play()
         }
-        const p = document.getElementById("info")
+
+        let increase = 0     
+        setInterval(() => {
+        increase+=0.1
+        p.style.opacity=increase
         p.innerHTML = "Well done you made it in " + (210 -seconds) + "seconds, with just " + nr + " tries"
+            
+        }, 1000);
+
+        /*const p = document.getElementById("info")
+        p.innerHTML = "Well done you made it in " + (210 -seconds) + "seconds, with just " + nr + " tries"*/
     }
     
 
